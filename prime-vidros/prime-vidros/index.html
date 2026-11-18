@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--
+  PRIME VIDROS - Landing page de tela única
+  Arquivos do projeto (tudo na mesma pasta):
+    index.html   -> a estrutura da página (este arquivo)
+    style.css    -> as cores, o layout e a responsividade
+    script.js    -> o visualizador de fotos (lightbox) e os links do WhatsApp
+    imagens/     -> a logo e as 6 fotos dos serviços
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Faz a página se ajustar à largura do celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Prime Vidros | Qualidade em cada detalhe</title>
+  <meta name="description" content="Prime Vidros: janelas, portas, box para banheiro e espelhos sob medida. Solicite seu orçamento pelo WhatsApp." />
+
+  <!-- Fonte Montserrat (do Google Fonts). Se não carregar, o navegador usa uma fonte parecida -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Liga o arquivo de estilos -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="pagina">
+
+    <!-- ============ 1. CABEÇALHO (barra do topo) ============ -->
+    <header class="topo">
+      <div class="marca">
+        <!-- TROQUE AQUI: logo da Prime Vidros -->
+        <img src="imagens/logo-prime-vidros.jpg" alt="Logo da Prime Vidros" class="marca-logo" width="44" height="44" />
+        <div class="marca-textos">
+          <strong>Prime Vidros</strong>
+          <span>Qualidade em cada detalhe</span>
+        </div>
+      </div>
+
+      <!-- Botão de contato rápido (abre o WhatsApp em nova aba) -->
+      <a class="btn btn-contorno"
+         href="https://wa.me/5511948963581?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Prime%20Vidros%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento."
+         target="_blank" rel="noopener">
+        Fale conosco
+      </a>
+    </header>
+
+    <!-- ============ 2. GRADE PRINCIPAL (estilo Apple) ============ -->
+    <main class="grade">
+
+      <!-- Card grande: apresentação da marca -->
+      <section class="card-hero">
+        <!-- TROQUE AQUI: logo grande (pode ser a mesma do cabeçalho) -->
+        <img src="imagens/logo-prime-vidros.jpg" alt="Logo circular da Prime Vidros" class="hero-logo" width="240" height="240" />
+        <h1>Prime Vidros</h1>
+        <p>Especialistas em Janelas, Portas, Box para Banheiro e Espelhos sob medida</p>
+
+        <!-- Botão principal (CTA) para o WhatsApp -->
+        <a class="btn btn-ouro"
+           href="https://wa.me/5511948963581?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Prime%20Vidros%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento."
+           target="_blank" rel="noopener">
+          <svg class="icone-zap" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </section>
+
+      <!--
+        Os 6 cards de serviços. Cada card tem:
+          data-titulo   -> título do serviço (usado no modal e na mensagem do WhatsApp)
+          data-descricao -> frase que aparece no modal
+          data-detalhes -> lista de detalhes técnicos, separados pelo símbolo |
+        Para trocar uma foto, mude apenas o src da <img> dentro do card.
+      -->
+
+      <!-- Card 1: Box de canto preto -->
+      <figure class="card"
+              data-titulo="Box Elegance &amp; Canto"
+              data-descricao="Box de canto em vidro temperado com perfil preto fosco, puxador tubular e acabamento limpo."
+              data-detalhes="Vidro temperado incolor|Perfil e ferragens em preto fosco|Puxador tubular e toalheiro no próprio vidro|Medidas sob projeto, instalação em canto">
+        <button class="card-abrir" type="button" aria-label="Ampliar foto: Box Elegance e Canto">
+          <img src="imagens/servico-1.jpg" alt="Box de canto em vidro temperado com perfil preto" style="--foco: 50% 50%;" />
+        </button>
+        <figcaption class="card-legenda">
+          <h2>Box Elegance &amp; Canto</h2>
+          <a class="mini-btn js-orcamento-card" href="https://wa.me/5511948963581" target="_blank" rel="noopener">Solicitar orçamento</a>
+        </figcaption>
+      </figure>
+
+      <!-- Card 2: Espelho no hall -->
+      <figure class="card"
+              data-titulo="Espelhos Decorativos"
+              data-descricao="Parede espelhada ampla para halls e áreas de convivência, ampliando a luz e a sensação de espaço."
+              data-detalhes="Painéis grandes, com poucas emendas|Acabamento limpo no teto e no rodapé|Corte sob medida, inclusive ao redor de portas|Indicado para halls, salas e corredores">
+        <button class="card-abrir" type="button" aria-label="Ampliar foto: Espelhos Decorativos">
+          <img src="imagens/servico-2.jpg" alt="Parede espelhada em hall de entrada" style="--foco: 50% 50%;" />
+        </button>
+        <figcaption class="card-legenda">
+          <h2>Espelhos Decorativos</h2>
+          <a class="mini-btn js-orcamento-card" href="https://wa.me/5511948963581" target="_blank" rel="noopener">Solicitar orçamento</a>
+        </figcaption>
+      </figure>
+
+      <!-- Card 3: Painel espelhado no elevador -->
+      <figure class="card"
+              data-titulo="Painéis Espelhados"
+              data-descricao="Painéis de espelho de alto padrão, com bordas lapidadas e alinhamento preciso entre as peças."
+              data-detalhes="Bordas lapidadas e juntas alinhadas|Cobre toda a altura da parede|Instalação ao redor de colunas e revestimentos|Ideal para áreas de elevadores e recepções">
+        <button class="card-abrir" type="button" aria-label="Ampliar foto: Painéis Espelhados">
+          <img src="imagens/servico-3.jpg" alt="Painel de espelho em área de elevadores" style="--foco: 50% 60%;" />
+        </button>
+        <figcaption class="card-legenda">
+          <h2>Painéis Espelhados</h2>
+          <a class="mini-btn js-orcamento-card" href="https://wa.me/5511948963581" target="_blank" rel="noopener">Solicitar orçamento</a>
+        </figcaption>
+      </figure>
+
+      <!-- Card 4: Fechamento de escada -->
+      <figure class="card"
+              data-titulo="Fechamentos &amp; Fachadas"
+              data-descricao="Fechamento em vidro fumê com estrutura de alumínio branco para escadas, entradas e áreas externas."
+              data-detalhes="Vidro fumê sobre estrutura de alumínio branco|Cobertura e laterais integradas|Corrimão tubular no mesmo acabamento|Projeto adaptado ao desenho do local">
+        <button class="card-abrir" type="button" aria-label="Ampliar foto: Fechamentos e Fachadas">
+          <img src="imagens/servico-4.jpg" alt="Fechamento de escada em vidro fumê e alumínio branco" style="--foco: 50% 45%;" />
+        </button>
+        <figcaption class="card-legenda">
+          <h2>Fechamentos &amp; Fachadas</h2>
+          <a class="mini-btn js-orcamento-card" href="https://wa.me/5511948963581" target="_blank" rel="noopener">Solicitar orçamento</a>
+        </figcaption>
+      </figure>
+
+      <!-- Card 5: Box reto de correr -->
+      <figure class="card"
+              data-titulo="Box Padrão Temperado"
+              data-descricao="Box frontal de correr, o modelo mais tradicional para banheiros de medida padrão."
+              data-detalhes="Vidro temperado|Folhas de correr com perfis de alumínio|Trilho superior em alumínio e puxador discreto|Opções de cor e acabamento sob consulta">
+        <button class="card-abrir" type="button" aria-label="Ampliar foto: Box Padrão Temperado">
+          <img src="imagens/servico-5.jpg" alt="Box frontal de correr em vidro temperado" style="--foco: 50% 40%;" />
+        </button>
+        <figcaption class="card-legenda">
+          <h2>Box Padrão Temperado</h2>
+          <a class="mini-btn js-orcamento-card" href="https://wa.me/5511948963581" target="_blank" rel="noopener">Solicitar orçamento</a>
+        </figcaption>
+      </figure>
+
+      <!-- Card 6: Box de canto branco -->
+      <figure class="card"
+              data-titulo="Soluções para Banheiro"
+              data-descricao="Box de canto com perfil de alumínio branco e folhas de correr, que aproveita bem o espaço do banheiro."
+              data-detalhes="Vidro temperado|Perfil de alumínio branco|Folhas de correr nas duas faces do canto|Puxadores brancos discretos">
+        <button class="card-abrir" type="button" aria-label="Ampliar foto: Soluções para Banheiro">
+          <img src="imagens/servico-6.jpg" alt="Box de canto com perfil de alumínio branco" style="--foco: 40% 25%;" />
+        </button>
+        <figcaption class="card-legenda">
+          <h2>Soluções para Banheiro</h2>
+          <a class="mini-btn js-orcamento-card" href="https://wa.me/5511948963581" target="_blank" rel="noopener">Solicitar orçamento</a>
+        </figcaption>
+      </figure>
+
+    </main>
+
+    <!-- ============ 3. RODAPÉ ============ -->
+    <footer class="rodape">
+      <span>Prime Vidros — Janelas • Portas • Box Banheiro • Espelhos</span>
+      <span>© <span id="ano">2026</span> Prime Vidros. Todos os direitos reservados.</span>
+    </footer>
+  </div>
+
+  <!-- ============ BOTÃO FLUTUANTE DO WHATSAPP (canto inferior direito) ============ -->
+  <a class="btn btn-ouro flutuante"
+     href="https://wa.me/5511948963581?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Prime%20Vidros%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento."
+     target="_blank" rel="noopener" aria-label="Solicitar orçamento pelo WhatsApp">
+    <svg class="icone-zap" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    Solicitar orçamento
+  </a>
+
+  <!-- ============ VISUALIZADOR DE FOTOS (lightbox) ============
+       <dialog> é uma janela nativa do navegador: já fecha com a tecla Esc.
+       O JavaScript preenche os textos e a foto quando você clica num card. -->
+  <dialog id="lightbox" class="lightbox" aria-labelledby="lb-titulo">
+    <div class="lightbox-conteudo">
+      <div class="lightbox-imagem">
+        <img id="lb-imagem" src="" alt="" />
+      </div>
+      <div class="lightbox-painel">
+        <button type="button" id="lb-fechar" class="lightbox-fechar" aria-label="Fechar">×</button>
+        <h2 id="lb-titulo"></h2>
+        <p id="lb-descricao"></p>
+        <ul id="lb-detalhes"></ul>
+        <a id="lb-orcamento" class="btn btn-ouro" href="https://wa.me/5511948963581" target="_blank" rel="noopener">
+          Pedir orçamento deste modelo
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Liga o arquivo de JavaScript (no final, depois de todo o HTML) -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+/* =========================================================
+   PRIME VIDROS - estilos
+   Ordem do arquivo:
+   1. Cores e variáveis      5. Cards de serviços
+   2. Base da página         6. Rodapé e botão flutuante
+   3. Botões                 7. Lightbox (modal)
+   4. Cabeçalho e hero       8. Responsividade
+   ========================================================= */
+
+
+/* ---------- 1. CORES (tiradas da logo) ----------
+   Mude uma cor aqui e ela muda no site inteiro. */
+:root {
+  --azul-noite:    #030B17;  /* fundo principal */
+  --azul-marinho:  #071933;  /* fundo dos cards */
+  --azul-profundo: #0A2146;  /* variação mais clara do azul */
+  --dourado:       #D4AF37;
+  --dourado-claro: #F3D06B;
+  --ciano:         #00A8E8;
+  --ciano-claro:   #38BDF8;
+  --branco:        #FFFFFF;
+  --prata:         #E2E8F0;
+
+  --borda-ouro: 1px solid rgba(212, 175, 55, 0.3); /* linha fina dourada */
+  --raio: 18px;                                     /* arredondamento dos cards */
+  --espaco: 12px;                                   /* distância entre os cards */
+  --altura-topo: 60px;
+  --altura-rodape: 56px;
+}
+
+
+/* ---------- 2. BASE DA PÁGINA ---------- */
+
+/* Faz width/height contarem o padding e a borda (evita surpresas no tamanho) */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Montserrat", "Inter", -apple-system, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--prata);
+  line-height: 1.5;
+  /* Fundo azul noturno com um brilho ciano discreto no canto */
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(0, 168, 232, 0.16), transparent 60%),
+    linear-gradient(180deg, var(--azul-noite), var(--azul-marinho));
+  background-attachment: fixed;
+}
+
+img { display: block; max-width: 100%; }
+
+/* Contorno visível ao navegar pelo teclado (acessibilidade) */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--ciano-claro);
+  outline-offset: 3px;
+}
+
+/* A página é uma "grade" de 3 linhas: topo, conteúdo (ocupa o resto) e rodapé */
+.pagina {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+
+/* ---------- 3. BOTÕES ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+
+/* Botão dourado metálico (principal) */
+.btn-ouro {
+  color: #1B1405;
+  border: 0;
+  background: linear-gradient(135deg, var(--dourado-claro), var(--dourado) 60%, #B8921F);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+}
+.btn-ouro:hover { box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.4), 0 8px 24px rgba(212, 175, 55, 0.35); }
+
+/* Botão só com contorno (cabeçalho) */
+.btn-contorno {
+  color: var(--dourado-claro);
+  border: 1px solid rgba(243, 208, 107, 0.6);
+  padding: 9px 18px;
+}
+.btn-contorno:hover { background: rgba(243, 208, 107, 0.12); box-shadow: 0 0 18px rgba(56, 189, 248, 0.25); }
+
+.icone-zap { width: 20px; height: 20px; flex: none; }
+
+
+/* ---------- 4. CABEÇALHO E HERO ---------- */
+.topo {
+  position: sticky;           /* fica no topo quando a página rola (celular) */
+  top: 0;
+  z-index: 20;
+  height: var(--altura-topo);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: rgba(3, 11, 23, 0.72);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);   /* efeito de vidro fosco */
+  border-bottom: var(--borda-ouro);
+}
+
+.marca { display: flex; align-items: center; gap: 12px; }
+
+.marca-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(243, 208, 107, 0.6);
+}
+
+.marca-textos { display: flex; flex-direction: column; line-height: 1.2; }
+.marca-textos strong { color: var(--branco); font-size: 0.98rem; font-weight: 600; letter-spacing: 0.01em; }
+.marca-textos span { color: var(--dourado-claro); font-size: 0.78rem; font-style: italic; }
+
+/* Área da grade principal */
+.grade {
+  display: grid;
+  /* 1ª coluna (hero) um pouco maior + 3 colunas iguais para os cards */
+  grid-template-columns: minmax(300px, 1.15fr) repeat(3, 1fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: var(--espaco);
+  padding: var(--espaco);
+  min-height: 0;   /* permite que a grade encolha dentro dos 100vh */
+}
+
+/* Card grande da marca: ocupa as 2 linhas da primeira coluna */
+.card-hero {
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2.2vh, 22px);
+  padding: clamp(16px, 3vh, 36px) 28px;
+  text-align: center;
+  border: var(--borda-ouro);
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(0, 168, 232, 0.24), transparent 60%),
+    linear-gradient(160deg, var(--azul-profundo), var(--azul-noite) 75%);
+}
+
+.hero-logo {
+  /* min() usa o menor valor: a logo diminui em telas baixas e nunca passa de 240px */
+  width: min(30vh, 240px);
+  height: min(30vh, 240px);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(243, 208, 107, 0.55), 0 0 44px rgba(0, 168, 232, 0.28);
+}
+
+.card-hero h1 {
+  font-size: clamp(1.7rem, 2.4vw + 1.2vh, 2.7rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  /* Texto com degradê prateado metálico */
+  background: linear-gradient(180deg, var(--branco), #A9B7CB);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card-hero p {
+  max-width: 30ch;
+  font-size: clamp(0.9rem, 1.9vh, 1.08rem);
+  color: var(--prata);
+}
+
+
+/* ---------- 5. CARDS DE SERVIÇOS ---------- */
+.card {
+  position: relative;
+  min-height: 0;
+  border: var(--borda-ouro);
+  border-radius: var(--raio);
+  overflow: hidden;
+  background: var(--azul-marinho);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.card:hover,
+.card:focus-within {
+  border-color: rgba(56, 189, 248, 0.75);        /* borda ciano no hover */
+  box-shadow: 0 0 30px rgba(0, 168, 232, 0.28);  /* brilho de cristal */
+}
+
+/* O botão invisível cobre o card todo e abre a foto ampliada */
+.card-abrir {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+.card-abrir img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                       /* a foto preenche o card sem deformar */
+  object-position: var(--foco, 50% 50%);   /* ponto de foco definido em cada <img> */
+  transition: transform 0.6s ease;
+}
+.card:hover .card-abrir img { transform: scale(1.04); }
+
+/* Faixa escura embaixo com título e botão */
+.card-legenda {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 56px 14px 14px;
+  background: linear-gradient(to top, rgba(3, 11, 23, 0.94), rgba(3, 11, 23, 0.6) 58%, transparent);
+  pointer-events: none;   /* o clique "passa" para a foto, exceto no mini botão */
+}
+.card-legenda h2 {
+  color: var(--branco);
+  font-size: clamp(0.92rem, 0.9vw + 0.45rem, 1.15rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.mini-btn {
+  pointer-events: auto;
+  padding: 7px 14px;
+  border: 1px solid rgba(243, 208, 107, 0.7);
+  border-radius: 999px;
+  background: rgba(3, 11, 23, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: var(--dourado-claro);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.mini-btn:hover { background: var(--dourado-claro); color: #1B1405; }
+
+
+/* ---------- 6. RODAPÉ E BOTÃO FLUTUANTE ---------- */
+.rodape {
+  min-height: var(--altura-rodape);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  padding: 0 20px;
+  border-top: var(--borda-ouro);
+  font-size: 0.78rem;
+  color: rgba(226, 232, 240, 0.75);
+}
+
+/* Botão fixo no canto inferior direito */
+.flutuante {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 30;
+  padding: 13px 22px;
+}
+
+
+/* ---------- 7. LIGHTBOX (foto ampliada) ---------- */
+.lightbox {
+  width: min(1100px, 94vw);
+  max-height: 92vh;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--prata);
+  overflow: visible;
+}
+.lightbox::backdrop {
+  background: rgba(3, 11, 23, 0.82);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.lightbox[open] { animation: aparecer 0.25s ease; }
+
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-conteudo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr);
+  max-height: 92vh;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--azul-profundo), var(--azul-noite));
+}
+
+.lightbox-imagem { background: #02070E; display: flex; min-height: 0; }
+.lightbox-imagem img {
+  width: 100%;
+  height: 100%;
+  max-height: 92vh;
+  object-fit: contain;   /* mostra a foto inteira, sem cortar */
+}
+
+.lightbox-painel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 40px 32px 32px;
+  overflow-y: auto;
+}
+.lightbox-painel h2 { color: var(--branco); font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+.lightbox-painel p  { max-width: 42ch; }
+.lightbox-painel ul { list-style: none; display: grid; gap: 10px; width: 100%; }
+.lightbox-painel li {
+  padding: 10px 0;
+  border-top: var(--borda-ouro);
+  font-size: 0.9rem;
+}
+
+.lightbox-fechar {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(243, 208, 107, 0.5);
+  border-radius: 50%;
+  background: rgba(3, 11, 23, 0.6);
+  color: var(--dourado-claro);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.lightbox-fechar:hover { background: rgba(243, 208, 107, 0.18); }
+
+
+/* ---------- 8. RESPONSIVIDADE ---------- */
+
+/* DESKTOP (acima de 1024px): tela única, sem rolagem */
+@media (min-width: 1025px) {
+  .pagina {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .rodape {
+    height: var(--altura-rodape);
+    flex-wrap: nowrap;
+    padding-right: 270px;   /* deixa espaço para o botão flutuante */
+  }
+
+  /* No desktop o botão flutuante fica "dentro" da faixa do rodapé */
+  .flutuante {
+    bottom: 8px;
+    padding: 10px 20px;
+  }
+}
+
+/* Telas de desktop muito baixas (ex.: janela pequena): libera a rolagem para nada ficar cortado */
+@media (min-width: 1025px) and (max-height: 560px) {
+  .pagina { height: auto; min-height: 100vh; overflow: visible; }
+  .grade  { grid-auto-rows: 320px; }
+}
+
+/* TABLET e CELULAR (até 1024px): rolagem vertical normal */
+@media (max-width: 1024px) {
+  .grade {
+    grid-template-columns: repeat(2, 1fr);   /* 2 colunas */
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+  }
+  .card-hero {
+    grid-column: 1 / -1;   /* o hero ocupa a linha inteira */
+    grid-row: auto;
+    padding: 32px 20px;
+  }
+  .hero-logo { width: 200px; height: 200px; }
+
+  .card { aspect-ratio: 4 / 5; }
+
+  /* Espaço no fim da página para o botão flutuante não cobrir o rodapé */
+  .rodape { padding-bottom: 88px; padding-top: 16px; }
+}
+
+/* CELULAR (até 560px): 1 coluna */
+@media (max-width: 560px) {
+  .grade { grid-template-columns: 1fr; }
+  .topo { padding: 0 14px; }
+  .topo .btn-contorno { display: none; }   /* o botão flutuante já cumpre esse papel */
+
+  /* Lightbox vira uma coluna só: foto em cima, textos embaixo */
+  .lightbox-conteudo { grid-template-columns: 1fr; overflow-y: auto; }
+  .lightbox-imagem img { max-height: 48vh; }
+  .lightbox-painel { padding: 24px 20px 24px; }
+}
+
+/* Lightbox em tablets na vertical */
+@media (max-width: 760px) {
+  .lightbox-conteudo { grid-template-columns: 1fr; overflow-y: auto; }
+  .lightbox-imagem img { max-height: 48vh; }
+  .lightbox-painel { padding: 24px 20px; }
+}
+
+/* Respeita quem desativou animações no aparelho */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+  html { scroll-behavior: auto; }
+}
